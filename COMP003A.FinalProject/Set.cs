@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace COMP003A.FinalProject
 {
-    internal class Set : Lego //will have lego set name, set number, msrp, resale price
+    internal class Set : Lego, ILegoConstruct //will have lego set name, set number, msrp, resale price
     {
         //auto implemented property
         public string SetNumber { get; set; }
@@ -29,6 +29,11 @@ namespace COMP003A.FinalProject
         public override void Awesome()
         {
             Console.WriteLine("Everything is awesome! Have fun building :D.");
+        }
+
+        public void Construction()
+        {
+            Console.WriteLine("Warning: Set under construction. Come back soon!");
         }
     }
 }

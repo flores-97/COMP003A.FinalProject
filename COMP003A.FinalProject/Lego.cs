@@ -32,6 +32,10 @@ namespace COMP003A.FinalProject
             set { _legoResale = value; }
         }
 
+        static int CalculateSum(int legoPrice)//adds how much paid for lego sets/minifigs
+        {
+            return legoPrice;
+        }
         public abstract void Awesome();
     }
 }

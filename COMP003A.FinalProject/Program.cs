@@ -15,6 +15,7 @@ namespace COMP003A.ZooManagementSystem
         {
             List<Lego> legos = new List<Lego>();
 
+
             string minifigsID = Console.ReadLine();
             string setNumber = Console.ReadLine();
             string legoName = Console.ReadLine();
@@ -77,7 +78,7 @@ namespace COMP003A.ZooManagementSystem
                     {
                         try
                         {
-                            Console.Write("Enter the retail price: ");
+                            Console.Write("Enter the price paid: ");
                             int LegoPrice = int.Parse(Console.ReadLine());
                             if (LegoPrice <= 0) throw new Exception("\nPrice cannot be blank.");
                             break;
@@ -205,10 +206,10 @@ namespace COMP003A.ZooManagementSystem
                     {
                         Console.WriteLine($"{lego.LegoName}");
                     }
-                    Console.WriteLine($"Total Lego in inventory: {legoName.Length}");
-                    Console.WriteLine($"Total spent: {legoPrice}");
-                    Console.WriteLine($"Potential resale value: {legoResale}");
-                    Console.WriteLine($"Lego Profit: {legoResale - legoPrice}");
+                    Console.WriteLine($"Total Lego in inventory: {legoName}");//how many items in inventory 
+                    Console.WriteLine($"Total spent: {legoPrice}");//total spent
+                    Console.WriteLine($"Potential resale value: {legoResale}");//potential resale value
+                    Console.WriteLine($"Lego Profit: {legoResale - legoPrice}");//if lego sold, how much profit 
                 }
 
                 else
