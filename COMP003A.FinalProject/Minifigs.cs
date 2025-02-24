@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace COMP003A.FinalProject
 {
-    internal class Minifigs
+    internal class Minifigs // will add name, Lego minifig ID, paid price, resale price.
     {
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace COMP003A.FinalProject
 {
-    internal class Set
+    internal class Set //will have lego set name, set number, msrp, resale price
     {
     }
 }
