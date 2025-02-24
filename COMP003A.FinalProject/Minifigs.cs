@@ -18,7 +18,7 @@ namespace COMP003A.FinalProject
         /// <param name="legoName"></param>
         /// <param name="legoPrice"></param>
         /// <param name="legoResale"></param>
-        public Minifigs(string minifigID, string legoName, double legoPrice, double legoResale)
+        public Minifigs(string minifigID, string legoName, int legoPrice, int legoResale)
         {
             MinifigID = minifigID;
             LegoName = legoName;

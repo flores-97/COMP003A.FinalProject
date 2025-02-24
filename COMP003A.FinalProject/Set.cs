@@ -18,7 +18,7 @@ namespace COMP003A.FinalProject
         /// <param name="legoName"></param>
         /// <param name="legoPrice"></param>
         /// <param name="legoResale"></param>
-        public Set(string  setNumber, string legoName, double legoPrice, double legoResale)
+        public Set(string  setNumber, string legoName, int legoPrice, int legoResale)
         {
             SetNumber = setNumber;
             LegoName = legoName;
