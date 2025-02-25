@@ -207,9 +207,9 @@ namespace COMP003A.ZooManagementSystem
                         Console.WriteLine($"{lego.LegoName}");
                     }
                     Console.WriteLine($"Total Lego in inventory: {legoName}");//how many items in inventory 
-                    Console.WriteLine($"Total spent: ${((sbyte)legoPrice)}");//total spent
-                    Console.WriteLine($"Potential resale value: ${((sbyte)legoResale)}");//potential resale value
-                    Console.WriteLine($"Lego Profit: ${legoResale - legoPrice}");//if lego sold, how much profit 
+                    Console.WriteLine($"Total spent: ${((sbyte)legoPrice)}");//meant to display total spent
+                    Console.WriteLine($"Potential resale value: ${((sbyte)legoResale)}");//meant to display potential resale value
+                    Console.WriteLine($"Lego Profit: ${legoResale - legoPrice}");//if lego sold, meant to display how much profit 
                 }
 
                 else
