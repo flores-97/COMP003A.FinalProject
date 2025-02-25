@@ -16,26 +16,9 @@ namespace COMP003A.FinalProject
         /// <summary>
         /// constructor
         /// </summary>
-        public string LegoName
-        {
-            get { return _legoName; }
-            set { _legoName = value; }
-        }
-        public int LegoPrice
-        {
-            get { return _legoPrice; }
-            set { _legoPrice = value; }
-        }
-        public int LegoResale
-        {
-            get { return _legoResale; }
-            set { _legoResale = value; }
-        }
-
-        static int CalculateSum(int legoPrice)//adds how much paid for lego sets/minifigs
-        {
-            return legoPrice;
-        }
+        public string LegoName { get; set; }
+        public int LegoPrice { get; set; } = 0;
+        public int LegoResale { get; set; } = 0;
         public abstract void Awesome();
     }
 }

@@ -26,6 +26,17 @@ namespace COMP003A.FinalProject
             LegoResale = legoResale;
         }
 
+        public int legoPrice
+        {
+            get { return legoPrice; }
+            set { legoPrice = value; }
+        }
+        public int legoResale
+        {
+            get { return LegoResale; }
+            set { legoResale = value; }
+        }
+
         public override void Awesome()
         {
             Console.WriteLine("Everything is awesome! Have fun building :D.");

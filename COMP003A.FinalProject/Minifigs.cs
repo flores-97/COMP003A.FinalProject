@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace COMP003A.FinalProject
 {
-    internal class Minifigs : Lego, ILegoConstruct // will add name, Lego minifig ID, paid price, resale price.
+    internal class Minifig : Lego, ILegoConstruct // will add name, Lego minifig ID, paid price, resale price.
     {
         //auto implemented property
         public string MinifigID { get; set; }
@@ -14,16 +14,27 @@ namespace COMP003A.FinalProject
         /// <summary>
         /// constructor
         /// </summary>
-        /// <param name="minifigID"></param>
+        /// <param name="minifigsID"></param>
         /// <param name="legoName"></param>
         /// <param name="legoPrice"></param>
         /// <param name="legoResale"></param>
-        public Minifigs(string minifigID, string legoName, int legoPrice, int legoResale)
+        public Minifig(string minifigsID, string legoName, int legoPrice, int legoResale)
         {
-            MinifigID = minifigID;
+            MinifigID = minifigsID;
             LegoName = legoName;
             LegoPrice = legoPrice;
             LegoResale = legoResale;
+        }
+
+        public int legoPrice
+        {
+            get { return legoPrice; }
+            set { legoPrice = value; }
+        }
+        public int legoResale
+        {
+            get { return LegoResale; }
+            set { legoResale = value; }
         }
 
         //method

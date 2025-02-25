@@ -1,7 +1,7 @@
 ﻿// Author: Victor Flores
 // Course: COMP-003A
 // Faculty: Jonathan Cruz
-// Purpose: Zoo management system demonstrating inheritance, abstraction, polymorphism, and method overloading in C#
+// Purpose: Final Project
 using System.Net.Http.Headers;
 using System.Xml.Linq;
 using COMP003A.FinalProject;
@@ -15,12 +15,12 @@ namespace COMP003A.ZooManagementSystem
         {
             List<Lego> legos = new List<Lego>();
 
+            string minifigsID;
+            string setNumber;
+            string legoName;
 
-            string minifigsID = Console.ReadLine();
-            string setNumber = Console.ReadLine();
-            string legoName = Console.ReadLine();
-            int legoPrice = int.Parse(Console.ReadLine());
-            int legoResale = int.Parse(Console.ReadLine());
+            int legoPrice;
+            int legoResale;
 
             Console.WriteLine("Welcome to the awesome Lego Inventory Management System!");
 
@@ -78,7 +78,7 @@ namespace COMP003A.ZooManagementSystem
                     {
                         try
                         {
-                            Console.Write("Enter the price paid: ");
+                            Console.Write("Enter the price paid: $");
                             int LegoPrice = int.Parse(Console.ReadLine());
                             if (LegoPrice <= 0) throw new Exception("\nPrice cannot be blank.");
                             break;
@@ -93,9 +93,9 @@ namespace COMP003A.ZooManagementSystem
                     {
                         try
                         {
-                            Console.Write("Enter the price of resale: ");
-                            int legoresale = int.Parse(Console.ReadLine());
-                            if (legoResale <= 0) throw new Exception("\nResale price cannot be blank.");
+                            Console.Write("Enter the price of resale: $");
+                            int LegoResale = int.Parse(Console.ReadLine());
+                            if (LegoResale <= 0) throw new Exception("\nResale price cannot be blank.");
                             break;
                         }
                         catch (Exception ex)
@@ -146,7 +146,7 @@ namespace COMP003A.ZooManagementSystem
                     {
                         try
                         {
-                            Console.Write("Enter the price paid: ");
+                            Console.Write("Enter the price paid: $");
                             int LegoPrice = int.Parse(Console.ReadLine());
                             if (LegoPrice <= 0) throw new Exception("\nPrice cannot be blank.");
                             break;
@@ -161,9 +161,9 @@ namespace COMP003A.ZooManagementSystem
                     {
                         try
                         {
-                            Console.Write("Enter the price of resale: ");
-                            int legoresale = int.Parse(Console.ReadLine());
-                            if (legoResale <= 0) throw new Exception("\nResale price cannot be blank.");
+                            Console.Write("Enter the price of resale: $");
+                            int LegoResale = int.Parse(Console.ReadLine());
+                            if (LegoResale <= 0) throw new Exception("\nResale price cannot be blank.");
                             break;
                         }
                         catch (Exception ex)
@@ -172,7 +172,7 @@ namespace COMP003A.ZooManagementSystem
                         }
                     }
 
-                    Minifigs minifigs = new Minifigs(setNumber, legoName, legoPrice, legoResale);
+                    Minifig minifigs = new Minifig(minifigsID, legoName, legoPrice, legoResale);
                     legos.Add(minifigs);
 
                     Console.WriteLine("Minifigure added successfully!");
@@ -185,7 +185,7 @@ namespace COMP003A.ZooManagementSystem
 
                     if (index != -1)
                     {
-                        Console.Write("How much did you sell it for? ");
+                        Console.Write("How much did you sell it for? $");
                         legoResale.Equals(int.Parse((string)Console.ReadLine()));
                         Console.WriteLine("Lego sold. So not awesome.");
                         break;
@@ -207,9 +207,9 @@ namespace COMP003A.ZooManagementSystem
                         Console.WriteLine($"{lego.LegoName}");
                     }
                     Console.WriteLine($"Total Lego in inventory: {legoName}");//how many items in inventory 
-                    Console.WriteLine($"Total spent: {legoPrice}");//total spent
-                    Console.WriteLine($"Potential resale value: {legoResale}");//potential resale value
-                    Console.WriteLine($"Lego Profit: {legoResale - legoPrice}");//if lego sold, how much profit 
+                    Console.WriteLine($"Total spent: ${((sbyte)legoPrice)}");//total spent
+                    Console.WriteLine($"Potential resale value: ${((sbyte)legoResale)}");//potential resale value
+                    Console.WriteLine($"Lego Profit: ${legoResale - legoPrice}");//if lego sold, how much profit 
                 }
 
                 else
