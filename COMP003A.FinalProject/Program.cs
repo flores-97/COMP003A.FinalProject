@@ -3,6 +3,7 @@
 // Faculty: Jonathan Cruz
 // Purpose: Final Project
 using System.Net.Http.Headers;
+using System.Security.Cryptography;
 using System.Xml.Linq;
 using COMP003A.FinalProject;
 using Microsoft.VisualBasic;
@@ -15,12 +16,16 @@ namespace COMP003A.ZooManagementSystem
         {
             List<Lego> legos = new List<Lego>();
 
-            string minifigsID;
-            string setNumber;
-            string legoName;
+            List<string> legoName = new List<string>();
+            List<string> setNumber = new List<string>();
+            List<string> minifigID = new List<string>();
 
-            int legoPrice;
-            int legoResale;
+            List<int> legoPrice = new List<int>();
+            List<int> legoResale = new List<int>();
+
+
+            Set set = new Set(setNumber, legoName, legoPrice, legoResale);
+            Minifig minifig = new Minifig(minifigID, legoName, legoPrice, legoResale);
 
             Console.WriteLine("Welcome to the awesome Lego Inventory Management System!");
 
@@ -48,24 +53,42 @@ namespace COMP003A.ZooManagementSystem
                     {
                         try
                         {
-                            Console.Write("Enter the number of the set: ");
+                            Console.Write("\nEnter the number of the set: ");
                             string SetNumber = Console.ReadLine();
                             if (string.IsNullOrWhiteSpace(SetNumber)) throw new Exception("\nSet's number cannot be blank.");
                             break;
                         }
                         catch (Exception ex)
                         {
-                            Console.WriteLine($"{ex.Message}\nPlease try agian.\n");
+                            Console.WriteLine($"{ex.Message}\nPlease try agian.");
                         }
+                        setNumber.Add(Console.ReadLine());
                     }
 
                     while (true)
                     {
                         try
                         {
-                            Console.Write("\nEnter the name of the Set: ");
+                            Console.Write("Enter the name of the Set: ");
                             string LegoName = Console.ReadLine();
                             if (string.IsNullOrWhiteSpace(LegoName)) throw new Exception("\nSet's name cannot be blank.");
+                            break;
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine($"{ex.Message}\nPlease try agian.");
+                        }
+                        legoName.Add(Console.ReadLine());
+                    }
+
+                    while (true)
+                    {
+                        try
+                        {
+                            Console.Write("Enter the price paid: $");
+                            legoPrice.Add(int.Parse(Console.ReadLine()));
+                            int LegoPrice = 0;
+                            if (LegoPrice <= -1) throw new Exception("\nPrice cannot be less than 0.");
                             break;
                         }
                         catch (Exception ex)
@@ -78,36 +101,23 @@ namespace COMP003A.ZooManagementSystem
                     {
                         try
                         {
-                            Console.Write("Enter the price paid: $");
-                            int LegoPrice = int.Parse(Console.ReadLine());
-                            if (LegoPrice <= 0) throw new Exception("\nPrice cannot be blank.");
-                            break;
-                        }
-                        catch (Exception ex)
-                        {
-                            Console.WriteLine($"{ex.Message}\nPlease try agian.\n");
-                        }
-                    }
-
-                    while (true)
-                    {
-                        try
-                        {
                             Console.Write("Enter the price of resale: $");
-                            int LegoResale = int.Parse(Console.ReadLine());
-                            if (LegoResale <= 0) throw new Exception("\nResale price cannot be blank.");
+                            legoResale.Add(int.Parse(Console.ReadLine()));
+                            int LegoResale = 0;
+                            if (LegoResale <= -1) throw new Exception("\nResale price cannot be less than 0.");
                             break;
                         }
                         catch (Exception ex)
                         {
-                            Console.WriteLine($"{ex.Message}\nPlease try agian.\n");
+                            Console.WriteLine($"{ex.Message}\nPlease try agian.");
                         }
                     }
 
-                    Set set = new Set(setNumber, legoName, legoPrice, legoResale);
                     legos.Add(set);
 
-                    Console.WriteLine("lego Set built successfully!");
+                    Console.WriteLine("Lego Set built successfully!");
+                    set.Awesome();
+                    set.Construction();
                 }
 
                 else if (choice == 2)
@@ -116,24 +126,42 @@ namespace COMP003A.ZooManagementSystem
                     {
                         try
                         {
-                            Console.Write("Enter the minifigure ID: ");
+                            Console.Write("\nEnter the minifigure ID: ");
                             string MinifigID = Console.ReadLine();
-                            if (string.IsNullOrWhiteSpace(MinifigID)) throw new Exception("\nSet's number cannot be blank.");
+                            if (string.IsNullOrWhiteSpace(MinifigID)) throw new Exception("\nMinifigure's ID cannot be blank.");
                             break;
                         }
                         catch (Exception ex)
                         {
-                            Console.WriteLine($"{ex.Message}\nPlease try agian.\n");
+                            Console.WriteLine($"{ex.Message}\nPlease try agian.");
                         }
+                        minifigID.Add(Console.ReadLine());
                     }
 
                     while (true)
                     {
                         try
                         {
-                            Console.Write("\nEnter the name of the minifigure: ");
+                            Console.Write("Enter the name of the minifigure: ");
                             string LegoName = Console.ReadLine();
-                            if (string.IsNullOrWhiteSpace(LegoName)) throw new Exception("\nSet's name cannot be blank.");
+                            if (string.IsNullOrWhiteSpace(LegoName)) throw new Exception("\nMinifigure's name cannot be blank.");
+                            break;
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine($"{ex.Message}\nPlease try agian.");
+                        }
+                        legoName.Add(Console.ReadLine());
+                    }
+
+                    while (true)
+                    {
+                        try
+                        {
+                            Console.Write("Enter the price paid: $");
+                            legoPrice.Add(int.Parse(Console.ReadLine()));
+                            int LegoPrice = 0;
+                            if (LegoPrice <= -1) throw new Exception("\nPrice cannot be less than 0.");
                             break;
                         }
                         catch (Exception ex)
@@ -146,24 +174,10 @@ namespace COMP003A.ZooManagementSystem
                     {
                         try
                         {
-                            Console.Write("Enter the price paid: $");
-                            int LegoPrice = int.Parse(Console.ReadLine());
-                            if (LegoPrice <= 0) throw new Exception("\nPrice cannot be blank.");
-                            break;
-                        }
-                        catch (Exception ex)
-                        {
-                            Console.WriteLine($"{ex.Message}\nPlease try agian.\n");
-                        }
-                    }
-
-                    while (true)
-                    {
-                        try
-                        {
                             Console.Write("Enter the price of resale: $");
-                            int LegoResale = int.Parse(Console.ReadLine());
-                            if (LegoResale <= 0) throw new Exception("\nResale price cannot be blank.");
+                            legoResale.Add(int.Parse(Console.ReadLine()));
+                            int LegoResale = 0;
+                            if (LegoResale <= -1) throw new Exception("\nResale price cannot be less than 0.");
                             break;
                         }
                         catch (Exception ex)
@@ -172,21 +186,21 @@ namespace COMP003A.ZooManagementSystem
                         }
                     }
 
-                    Minifig minifigs = new Minifig(minifigsID, legoName, legoPrice, legoResale);
-                    legos.Add(minifigs);
+                    legos.Add(minifig);
 
                     Console.WriteLine("Minifigure added successfully!");
+                    minifig.Awesome();
+                    minifig.Construction();
                 }
 
                 else if (choice == 3)
                 {
-                    Console.WriteLine("Which Lego item would you like to remove? ");
+                    Console.Write("Which Lego item did you sell? ");
                     int index = legoName.IndexOf(Console.ReadLine());
-
                     if (index != -1)
                     {
-                        Console.Write("How much did you sell it for? $");
-                        legoResale.Equals(int.Parse((string)Console.ReadLine()));
+                        Console.Write("How much did you sell it for? (please include minus sign) $");
+                        legoResale.Remove(int.Parse(Console.ReadLine()));
                         Console.WriteLine("Lego sold. So not awesome.");
                         break;
                     }
@@ -202,14 +216,13 @@ namespace COMP003A.ZooManagementSystem
 
                 else if (choice == 4)
                 {
-                    foreach (Lego lego in legos)
-                    {
-                        Console.WriteLine($"{lego.LegoName}");
-                    }
-                    Console.WriteLine($"Total Lego in inventory: {legoName}");//how many items in inventory 
-                    Console.WriteLine($"Total spent: ${((sbyte)legoPrice)}");//meant to display total spent
-                    Console.WriteLine($"Potential resale value: ${((sbyte)legoResale)}");//meant to display potential resale value
-                    Console.WriteLine($"Lego Profit: ${legoResale - legoPrice}");//if lego sold, meant to display how much profit 
+                    set.DisplayInfo();
+                    minifig.DisplayInfo();
+
+                    Console.WriteLine($"Total Lego in inventory: {legos.Count}");//how many items in inventory 
+                    Console.WriteLine($"Total spent: {legoPrice.Sum()}");//meant to display total spent
+                    Console.WriteLine($"Potential resale value: ${legoResale.Sum()}");//meant to display potential resale value
+                    Console.WriteLine($"Lego Profit: ${legoResale.Sum() - legoPrice.Sum()}");//if lego sold, meant to display how much profit 
                 }
 
                 else
@@ -217,9 +230,6 @@ namespace COMP003A.ZooManagementSystem
                     Console.WriteLine("\nInvalid entry. Select an option on the menu.\n");
                 }
             }
-
         }//ends program
-
-
     }
 }

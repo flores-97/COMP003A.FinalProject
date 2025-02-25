@@ -1,34 +1,36 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace COMP003A.FinalProject
 {
-    internal class Set : Lego, ILegoConstruct //will have lego set name, set number, msrp, resale price
+
+    internal class Minifig : Lego, ILegoConstruct // will add name, Lego minifig ID, paid price, resale price.
     {
-        private List<string> setNumber;
+        private List<string> minifigID;
         private List<string> legoName;
         private List<int> legoPrice;
         private List<int> legoResale;
 
         //auto implemented property
-        public string SetNumber
+        public string MinifigID
         {
             get
             {
-                return SetNumber;
+                return MinifigID;
             }
             set
             {
-                if (SetNumber == "")
+                if (MinifigID == "")
                 {
-                    throw new ArgumentException("Enter the Lego set number.");
+                    throw new ArgumentException("Enter the Lego minifigure name.");
                 }
                 else
                 {
-                    SetNumber = value;
+                    MinifigID = value;
                 }
             }
         }
@@ -36,36 +38,38 @@ namespace COMP003A.FinalProject
         /// <summary>
         /// constructor
         /// </summary>
-        /// <param name="setNumber"></param>
+        /// <param name="minifigID"></param>
         /// <param name="legoName"></param>
         /// <param name="legoPrice"></param>
         /// <param name="legoResale"></param>
 
-        public Set(List<string> setNumber, List<string> legoName, List<int> legoPrice, List<int> legoResale)
+
+        public Minifig(List<string> minifigID, List<string> legoName, List<int> legoPrice, List<int> legoResale)
         {
-            this.setNumber = setNumber;
+            this.minifigID = minifigID;
             this.legoName = legoName;
             this.legoPrice = legoPrice;
             this.legoResale = legoResale;
         }
 
+
+        //method
         public override void Awesome()
         {
-            Console.WriteLine("Everything is awesome! Have fun building :D.");
+            Console.WriteLine("Everything is awesome! Have fun collecting :D.");
         }
 
         public void Construction()
         {
-            Console.WriteLine("Warning: Set under construction. Come back soon!\n");
+            Console.WriteLine("Note: Lego minifigure collected. Be mindful of budget!\n");
         }
 
         public override void DisplayInfo()
         {
-            foreach (var item in SetNumber)
+            foreach (var item in MinifigID)
             {
-                Console.WriteLine($"{setNumber} - {legoName}: ${legoPrice}");
+                Console.WriteLine($"{minifigID} - {legoName}: ${legoPrice}");
             }
         }
-
     }
 }
