@@ -8,64 +8,22 @@ namespace COMP003A.FinalProject
 {
     internal class Set : Lego, ILegoConstruct //will have lego set name, set number, msrp, resale price
     {
-        private List<string> setNumber;
-        private List<string> legoName;
-        private List<int> legoPrice;
-        private List<int> legoResale;
-
-        //auto implemented property
-        public string SetNumber
-        {
-            get
-            {
-                return SetNumber;
-            }
-            set
-            {
-                if (SetNumber == "")
-                {
-                    throw new ArgumentException("Enter the Lego set number.");
-                }
-                else
-                {
-                    SetNumber = value;
-                }
-            }
-        }
-
-        /// <summary>
-        /// constructor
-        /// </summary>
-        /// <param name="setNumber"></param>
-        /// <param name="legoName"></param>
-        /// <param name="legoPrice"></param>
-        /// <param name="legoResale"></param>
-
-        public Set(List<string> setNumber, List<string> legoName, List<int> legoPrice, List<int> legoResale)
-        {
-            this.setNumber = setNumber;
-            this.legoName = legoName;
-            this.legoPrice = legoPrice;
-            this.legoResale = legoResale;
-        }
-
+        //method
         public override void Awesome()
         {
             Console.WriteLine("Everything is awesome! Have fun building :D.");
+        }
+        public override void DisplayLegoFinance()
+        {
+            Console.WriteLine($"\nTotal Lego in inventory: {legoName.Count}");//how many items in inventory 
+            Console.WriteLine($"Total spent: {legoPrice.Sum()}");//meant to display total spent
+            Console.WriteLine($"Potential resale value: ${legoResale.Sum()}");//meant to display potential resale value
+            Console.WriteLine($"Lego Profit: ${legoResale.Sum() - legoPrice.Sum()}\n");//if lego sold, meant to display how much profit
         }
 
         public void Construction()
         {
             Console.WriteLine("Warning: Set under construction. Come back soon!\n");
         }
-
-        public override void DisplayInfo()
-        {
-            foreach (var item in SetNumber)
-            {
-                Console.WriteLine($"{setNumber} - {legoName}: ${legoPrice}");
-            }
-        }
-
     }
 }

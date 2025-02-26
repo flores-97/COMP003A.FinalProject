@@ -7,58 +7,47 @@ using System.Xml.Linq;
 
 namespace COMP003A.FinalProject
 {
-    internal abstract class Lego //base
+    abstract class Lego //base
     {
+        private string _legoID;
         private string _legoName;
-        private int _legoPrice;
-        private int _legoResale;
-
+        private double _legoPrice;
+        private double _legoResale;
         /// <summary>
-        /// constructor
+        /// properties
         /// </summary>
-        public string LegoName 
+        public string LegoID
+        { get { return _legoID; } }
+
+        public string LegoName
         {
-            get
-            { 
-                return _legoName; 
-            }
-            set
-            {
-                if (LegoName == "")
-                {
-                    throw new ArgumentException("Enter the Lego name: ");
-                }
-                else
-                {
-                    LegoName = value;
-                }
-            }
-        }
-        public int LegoPrice
-        {
-            get
-            {
-                return _legoPrice;
-            }
-            set
-            {
-                _legoPrice = value;
-            }
-        }
-        public int LegoResale
-        {
-            get
-            {
-                return _legoResale;
-            }
-            set
-            {
-                _legoResale = value;
-            }
+            get { return _legoName; }
+            set { _legoName = value; }
         }
 
-        public abstract void DisplayInfo();
-
+        public double LegoPrice
+        {
+            get { return _legoPrice; }
+            set
+            {
+                if (value <= -1)
+                {
+                    _legoPrice = value;
+                }
+            }
+        }
+        public double LegoResale
+        {
+            get { return _legoResale; }
+            set
+            {
+                if (value <= -1)
+                {
+                    _legoResale = value;
+                }
+            }
+        }
+        public abstract void DisplayLegoFinance();
         public abstract void Awesome();
     }
 }

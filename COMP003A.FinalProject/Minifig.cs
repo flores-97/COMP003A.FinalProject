@@ -7,69 +7,23 @@ using System.Threading.Tasks;
 
 namespace COMP003A.FinalProject
 {
-
     internal class Minifig : Lego, ILegoConstruct // will add name, Lego minifig ID, paid price, resale price.
     {
-        private List<string> minifigID;
-        private List<string> legoName;
-        private List<int> legoPrice;
-        private List<int> legoResale;
-
-        //auto implemented property
-        public string MinifigID
-        {
-            get
-            {
-                return MinifigID;
-            }
-            set
-            {
-                if (MinifigID == "")
-                {
-                    throw new ArgumentException("Enter the Lego minifigure name.");
-                }
-                else
-                {
-                    MinifigID = value;
-                }
-            }
-        }
-
-        /// <summary>
-        /// constructor
-        /// </summary>
-        /// <param name="minifigID"></param>
-        /// <param name="legoName"></param>
-        /// <param name="legoPrice"></param>
-        /// <param name="legoResale"></param>
-
-
-        public Minifig(List<string> minifigID, List<string> legoName, List<int> legoPrice, List<int> legoResale)
-        {
-            this.minifigID = minifigID;
-            this.legoName = legoName;
-            this.legoPrice = legoPrice;
-            this.legoResale = legoResale;
-        }
-
-
         //method
         public override void Awesome()
         {
             Console.WriteLine("Everything is awesome! Have fun collecting :D.");
         }
-
+        public override void DisplayLegoFinance()
+        {
+            Console.WriteLine($"\nTotal Lego in inventory: {LegoName.Count}");//how many items in inventory 
+            Console.WriteLine($"Total spent: {LegoPrice.Sum()}");//meant to display total spent
+            Console.WriteLine($"Potential resale value: ${LegoResale.Sum()}");//meant to display potential resale value
+            Console.WriteLine($"Lego Profit: ${LegoResale.Sum() - LegoPrice.Sum()}\n");//if lego sold, meant to display how much profit
+        }
         public void Construction()
         {
             Console.WriteLine("Note: Lego minifigure collected. Be mindful of budget!\n");
-        }
-
-        public override void DisplayInfo()
-        {
-            foreach (var item in MinifigID)
-            {
-                Console.WriteLine($"{minifigID} - {legoName}: ${legoPrice}");
-            }
         }
     }
 }
