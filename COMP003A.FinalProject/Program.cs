@@ -16,9 +16,9 @@ namespace COMP003A.ZooManagementSystem
         static void Main(string[] args)
         {
             List<Lego> legos = new List<Lego>();
-
-            Set sets = new Set();
-            Minifig minifigs = new Minifig();
+            Set set = new Set();
+            
+            Minifig minifig = new Minifig();
 
             Console.WriteLine("Welcome to the awesome Lego Inventory Management System!");
 
@@ -41,7 +41,6 @@ namespace COMP003A.ZooManagementSystem
 
                 else if (choice == 1)
                 {
-
                     while (true)
                     {
                         try
@@ -101,11 +100,10 @@ namespace COMP003A.ZooManagementSystem
                             Console.WriteLine($"{ex.Message}\nPlease try agian.");
                         }
                     }
-
-                    legos.Add(sets);
+                    legos.Add(set);
                     Console.WriteLine("Lego Set built successfully!");
-                    sets.Awesome();
-                    sets.Construction();
+                    set.Awesome();
+                    set.Construction();
                 }
 
                 else if (choice == 2)
@@ -170,21 +168,25 @@ namespace COMP003A.ZooManagementSystem
                         }
                     }
 
-                    legos.Add(minifigs);
+                    legos.Add(minifig);
                     Console.WriteLine("Minifigure added successfully!");
-                    minifigs.Awesome();
-                    minifigs.Construction();
+                    minifig.Awesome();
+                    minifig.Construction();
                 }
 
                 else if (choice == 3)
                 {
-
+                    //create something that will remove legoName 
                 }
 
                 else if (choice == 4)
                 {
-                    sets.DisplayLegoFinance();
-                    minifigs.DisplayLegoFinance();
+                    foreach (Lego lego in legos)
+                    {
+                        Console.WriteLine(lego);//display all legoName with legoPrice in list form
+
+                        lego.DisplayLegoFinance();
+                    }
 
                 }
 

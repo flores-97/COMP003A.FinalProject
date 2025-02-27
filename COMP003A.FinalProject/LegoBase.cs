@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Xml.Linq;
 
 namespace COMP003A.FinalProject
 {
-    abstract class Lego //base
+    abstract class Lego
     {
         private string _legoID;
         private string _legoName;
@@ -16,9 +15,12 @@ namespace COMP003A.FinalProject
         /// <summary>
         /// properties
         /// </summary>
+        /// 
         public string LegoID
-        { get { return _legoID; } }
-
+        {
+            get { return _legoID; }
+            set { _legoID = value; }
+        }
         public string LegoName
         {
             get { return _legoName; }
@@ -46,6 +48,21 @@ namespace COMP003A.FinalProject
                     _legoResale = value;
                 }
             }
+        }
+
+        /// <summary>
+        /// constructor
+        /// </summary>
+        /// <param name="legoID"></param>
+        /// <param name="legoName"></param>
+        /// <param name="legoPrice"></param>
+        /// <param name="legoResale"></param>
+        public Lego(string legoID,string legoName, double legoPrice, double legoResale)
+        {
+            LegoID = legoID;
+            LegoName = legoName;
+            LegoPrice = legoPrice;
+            LegoResale = legoResale;
         }
         public abstract void DisplayLegoFinance();
         public abstract void Awesome();
