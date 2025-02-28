@@ -2,6 +2,7 @@
 // Course: COMP-003A
 // Faculty: Jonathan Cruz
 // Purpose: Final Project
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Net.Http.Headers;
 using System.Security.Cryptography;
@@ -9,16 +10,13 @@ using System.Xml.Linq;
 using COMP003A.FinalProject;
 using Microsoft.VisualBasic;
 
-namespace COMP003A.ZooManagementSystem
+namespace COMP003A.LegoInventorySystem
 {
     internal class Program
     {
         static void Main(string[] args)
         {
             List<Lego> legos = new List<Lego>();
-            Set set = new Set();
-            
-            Minifig minifig = new Minifig();
 
             Console.WriteLine("Welcome to the awesome Lego Inventory Management System!");
 
@@ -76,7 +74,7 @@ namespace COMP003A.ZooManagementSystem
                         try
                         {
                             Console.Write("\nEnter the price paid: $");
-                            int legoPrice = int.Parse(Console.ReadLine());
+                            double legoPrice = Convert.ToDouble(Console.ReadLine());
                             if (legoPrice <= -1) throw new Exception("\nPrice cannot be less than 0.");
                             break;
                         }
@@ -91,7 +89,7 @@ namespace COMP003A.ZooManagementSystem
                         try
                         {
                             Console.Write("\nEnter the price of resale: $");
-                            int legoResale = int.Parse(Console.ReadLine());
+                            double legoResale = Convert.ToDouble(Console.ReadLine());
                             if (legoResale <= -1) throw new Exception("\nResale price cannot be less than 0.");
                             break;
                         }
@@ -100,10 +98,11 @@ namespace COMP003A.ZooManagementSystem
                             Console.WriteLine($"{ex.Message}\nPlease try agian.");
                         }
                     }
+                    Set set = new Set();
                     legos.Add(set);
                     Console.WriteLine("Lego Set built successfully!");
-                    set.Awesome();
-                    set.Construction();
+                    ((Set)legos.Last()).Awesome();
+                    ((Set)legos.Last()).Construction();
                 }
 
                 else if (choice == 2)
@@ -143,7 +142,7 @@ namespace COMP003A.ZooManagementSystem
                         try
                         {
                             Console.Write("\nEnter the price paid: $");
-                            double legoPrice = int.Parse(Console.ReadLine());
+                            double legoPrice = Convert.ToDouble(Console.ReadLine());
                             if (legoPrice <= -1) throw new Exception("\nPrice cannot be less than 0.");
                             break;
                         }
@@ -158,7 +157,7 @@ namespace COMP003A.ZooManagementSystem
                         try
                         {
                             Console.Write("\nEnter the price of resale: $");
-                            double legoResale = int.Parse(Console.ReadLine());
+                            double legoResale = Convert.ToDouble(Console.ReadLine());
                             if (legoResale <= -1) throw new Exception("\nResale price cannot be less than 0.");
                             break;
                         }
@@ -167,27 +166,38 @@ namespace COMP003A.ZooManagementSystem
                             Console.WriteLine($"{ex.Message}\nPlease try agian.\n");
                         }
                     }
-
+                    Minifig minifig = new Minifig();
                     legos.Add(minifig);
                     Console.WriteLine("Minifigure added successfully!");
-                    minifig.Awesome();
-                    minifig.Construction();
+                    ((Minifig)legos.Last()).Awesome();
+                    ((Minifig)legos.Last()).Construction();
                 }
 
                 else if (choice == 3)
                 {
-                    //create something that will remove legoName 
+                    Console.WriteLine("Which Lego was sold: ");
+                    string removedLego = Console.ReadLine();
+
+                    int removedCount = legos.RemoveAll(lego => lego.LegoName.Equals(removedLego, StringComparison.OrdinalIgnoreCase));
+                    if (removedCount > 0)
+                    {
+                        Console.WriteLine($"{removedCount} {removedLego} removed");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Lego not found. Review inventory list.");
+                    }
                 }
 
                 else if (choice == 4)
                 {
                     foreach (Lego lego in legos)
                     {
-                        Console.WriteLine(lego);//display all legoName with legoPrice in list form
+                        Console.WriteLine($"-{lego.LegoName}: {lego.LegoPrice}");
+                        Console.WriteLine($"Total Lego: {legos.Count}");
 
                         lego.DisplayLegoFinance();
                     }
-
                 }
 
                 else

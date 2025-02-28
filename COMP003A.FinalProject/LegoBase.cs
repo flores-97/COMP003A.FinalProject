@@ -16,15 +16,29 @@ namespace COMP003A.FinalProject
         /// properties
         /// </summary>
         /// 
-        public string LegoID
+        public string legoID
         {
             get { return _legoID; }
-            set { _legoID = value; }
+            set
+            {
+                if (string.IsNullOrEmpty(value)) ;
+                else
+                {
+                    _legoID = value;
+                }
+            }
         }
         public string LegoName
         {
             get { return _legoName; }
-            set { _legoName = value; }
+            set
+            {
+                if (string.IsNullOrEmpty(value)) ;
+                else
+                {
+                    _legoName = value;
+                }
+            }
         }
 
         public double LegoPrice
@@ -50,6 +64,10 @@ namespace COMP003A.FinalProject
             }
         }
 
+        List<string>LegoNames = new List<string>();
+        List<double> LegoPrices = new List<double>();
+        List<double> LegoResales = new List<double>();
+
         /// <summary>
         /// constructor
         /// </summary>
@@ -59,12 +77,27 @@ namespace COMP003A.FinalProject
         /// <param name="legoResale"></param>
         public Lego(string legoID,string legoName, double legoPrice, double legoResale)
         {
-            LegoID = legoID;
+            this.legoID = legoID;
             LegoName = legoName;
             LegoPrice = legoPrice;
             LegoResale = legoResale;
+
+            
+            LegoNames.Add(legoName);
+            LegoPrices.Add(legoPrice);
+            LegoResales.Add(legoResale);
         }
-        public abstract void DisplayLegoFinance();
+        
+        public virtual void DisplayLegoFinance()
+        {
+            Console.WriteLine($"Total spent: {LegoPrices.Sum()}");//meant to display total spent
+            Console.WriteLine($"Potential resale value: ${LegoResales.Sum()}");//meant to display potential resale value
+            Console.WriteLine($"Lego Profit: ${LegoResales.Sum() - LegoPrices.Sum()}\n");//if lego sold, meant to display how much profit
+        }
+
+        public virtual void RemoveLego()
+        {
+        }
         public abstract void Awesome();
     }
 }
