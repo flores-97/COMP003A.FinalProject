@@ -8,7 +8,6 @@ namespace COMP003A.FinalProject
 {
     abstract class Lego
     {
-        //field
         private string _legoID;
         private string _legoName;
         private double _legoPrice;
@@ -65,10 +64,6 @@ namespace COMP003A.FinalProject
             }
         }
 
-        List<double> LegoPrices = new List<double>();
-        List<double> LegoResales = new List<double>();
-
-
         /// <summary>
         /// constructor
         /// </summary>
@@ -76,9 +71,9 @@ namespace COMP003A.FinalProject
         /// <param name="legoName"></param>
         /// <param name="legoPrice"></param>
         /// <param name="legoResale"></param>
-        public Lego(string legoID, string legoName, double legoPrice, double legoResale)
+        public Lego(string legoID,string legoName, double legoPrice, double legoResale)
         {
-            LegoID = legoID;
+            legoID = legoID;
             LegoName = legoName;
             LegoPrice = legoPrice;
             LegoResale = legoResale;
@@ -89,13 +84,6 @@ namespace COMP003A.FinalProject
             LegoName = legoName;
             LegoPrice = legoPrice;
             LegoResale = legoResale;
-        }
-
-        public virtual void DisplayLegoFinance()
-        {
-            Console.WriteLine($"Total spent: {LegoPrices.Sum()}");//meant to display total spent
-            Console.WriteLine($"Potential resale value: ${LegoResales.Sum()}");//meant to display potential resale value
-            Console.WriteLine($"Lego Profit: ${LegoResales.Sum() - LegoPrices.Sum()}\n");//if lego sold, meant to display how much profit
         }
 
         public virtual void RemoveLego()

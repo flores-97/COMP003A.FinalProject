@@ -34,8 +34,10 @@ namespace COMP003A.LegoInventorySystem
                 Console.Write("Enter your choice: ");
 
                 choice = int.Parse(Console.ReadLine());
+
                 string legoID, legoName;
                 double legoPrice, legoResale;
+                
                 if (choice == 5) break;
 
                 else if (choice == 1)
@@ -76,7 +78,7 @@ namespace COMP003A.LegoInventorySystem
                         {
                             Console.Write("\nEnter the price paid: $");
                             legoPrice = Convert.ToDouble(Console.ReadLine());
-                            if (legoPrice <= -1) throw new Exception("\nPrice cannot be less than 0.");
+                            if (legoPrice <= 0) throw new Exception("\nPrice cannot be less than 0.");
                             break;
                         }
                         catch (Exception ex)
@@ -91,7 +93,7 @@ namespace COMP003A.LegoInventorySystem
                         {
                             Console.Write("\nEnter the price of resale: $");
                             legoResale = Convert.ToDouble(Console.ReadLine());
-                            if (legoResale <= -1) throw new Exception("\nResale price cannot be less than 0.");
+                            if (legoResale <= 0) throw new Exception("\nResale price cannot be less than 0.");
                             break;
                         }
                         catch (Exception ex)
@@ -144,7 +146,7 @@ namespace COMP003A.LegoInventorySystem
                         {
                             Console.Write("\nEnter the price paid: $");
                             legoPrice = Convert.ToDouble(Console.ReadLine());
-                            if (legoPrice <= -1) throw new Exception("\nPrice cannot be less than 0.");
+                            if (legoPrice <= 0) throw new Exception("\nPrice cannot be less than 0.");
                             break;
                         }
                         catch (Exception ex)
@@ -159,7 +161,7 @@ namespace COMP003A.LegoInventorySystem
                         {
                             Console.Write("\nEnter the price of resale: $");
                             legoResale = Convert.ToDouble(Console.ReadLine());
-                            if (legoResale <= -1) throw new Exception("\nResale price cannot be less than 0.");
+                            if (legoResale <= 0) throw new Exception("\nResale price cannot be less than 0.");
                             break;
                         }
                         catch (Exception ex)
@@ -176,7 +178,7 @@ namespace COMP003A.LegoInventorySystem
 
                 else if (choice == 3)
                 {
-                    Console.WriteLine("Which Lego was sold: ");
+                    Console.Write("Which Lego was sold: ");
                     string removedLego = Console.ReadLine();
 
                     int removedCount = legos.RemoveAll(lego => lego.LegoName.Equals(removedLego, StringComparison.OrdinalIgnoreCase));
@@ -194,11 +196,14 @@ namespace COMP003A.LegoInventorySystem
                 {
                     foreach (Lego lego in legos)
                     {
-                        Console.WriteLine($"-{lego.LegoName}: {lego.LegoPrice}");
-                        Console.WriteLine($"Total Lego: {legos.Count}");
-
-                        lego.DisplayLegoFinance();
+                        Console.WriteLine($"\n-{lego.LegoName}: {lego.LegoPrice}");
                     }
+
+                    Console.WriteLine("Running Total");
+                    Console.WriteLine($"Total Lego: {legos.Count}");
+                    Console.WriteLine($"Total Spent: ${legos.Sum(lego => lego.LegoPrice)}");
+                    Console.WriteLine($"Potential Resale: ${legos.Sum(lego => lego.LegoResale)}");
+                    Console.WriteLine($"Total Profit: ${legos.Sum(lego => lego.LegoResale) - legos.Sum(lego => lego.LegoResale)}");
                 }
 
                 else
