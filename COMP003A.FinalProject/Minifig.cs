@@ -7,12 +7,10 @@ using System.Threading.Tasks;
 
 namespace COMP003A.FinalProject
 {
-    internal class Minifig(string legoID, string legoName, double legoPrice, double legoResale) : Lego(legoID, legoName, legoPrice, legoResale), ILegoConstruct //derived class will add name, Lego minifig ID, paid price, resale price.
+    internal class Minifig : Lego, ILegoConstruct //derived class will add name, Lego minifig ID, paid price, resale price.
     {
-        public Minifig()
-        {
-        }
-
+        public Minifig(string legoID, string legoName, double legoPrice, double legoResale) : base(legoName, legoPrice, legoResale)
+        { }
         //method
         public override void Awesome()
         {

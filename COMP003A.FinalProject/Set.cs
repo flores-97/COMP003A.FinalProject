@@ -9,13 +9,10 @@ using System.Threading.Tasks;
 
 namespace COMP003A.FinalProject
 {
-    internal class Set(string legoID, string legoName, double legoPrice, double legoResale) : Lego(legoID, legoName, legoPrice, legoResale), ILegoConstruct //derived class will have lego set name, set number, msrp, resale price
+    internal class Set: Lego, ILegoConstruct //derived class will have lego set name, set number, msrp, resale price
     {
-        public Set()
-        {
-            
-        }
-
+        public Set(string legoID, string legoName, double legoPrice, double legoResale) : base(legoName, legoPrice, legoResale)
+        { }
         //method
         public override void Awesome()
         {

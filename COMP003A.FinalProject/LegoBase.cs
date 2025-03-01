@@ -8,6 +8,7 @@ namespace COMP003A.FinalProject
 {
     abstract class Lego
     {
+        //field
         private string _legoID;
         private string _legoName;
         private double _legoPrice;
@@ -16,7 +17,7 @@ namespace COMP003A.FinalProject
         /// properties
         /// </summary>
         /// 
-        public string legoID
+        public string LegoID
         {
             get { return _legoID; }
             set
@@ -46,7 +47,7 @@ namespace COMP003A.FinalProject
             get { return _legoPrice; }
             set
             {
-                if (value <= -1)
+                if (value >= 0)
                 {
                     _legoPrice = value;
                 }
@@ -57,16 +58,16 @@ namespace COMP003A.FinalProject
             get { return _legoResale; }
             set
             {
-                if (value <= -1)
+                if (value >= 0)
                 {
                     _legoResale = value;
                 }
             }
         }
 
-        List<string>LegoNames = new List<string>();
         List<double> LegoPrices = new List<double>();
         List<double> LegoResales = new List<double>();
+
 
         /// <summary>
         /// constructor
@@ -75,19 +76,21 @@ namespace COMP003A.FinalProject
         /// <param name="legoName"></param>
         /// <param name="legoPrice"></param>
         /// <param name="legoResale"></param>
-        public Lego(string legoID,string legoName, double legoPrice, double legoResale)
+        public Lego(string legoID, string legoName, double legoPrice, double legoResale)
         {
-            this.legoID = legoID;
+            LegoID = legoID;
             LegoName = legoName;
             LegoPrice = legoPrice;
             LegoResale = legoResale;
-
-            
-            LegoNames.Add(legoName);
-            LegoPrices.Add(legoPrice);
-            LegoResales.Add(legoResale);
         }
-        
+
+        protected Lego(string legoName, double legoPrice, double legoResale)
+        {
+            LegoName = legoName;
+            LegoPrice = legoPrice;
+            LegoResale = legoResale;
+        }
+
         public virtual void DisplayLegoFinance()
         {
             Console.WriteLine($"Total spent: {LegoPrices.Sum()}");//meant to display total spent
