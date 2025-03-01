@@ -34,7 +34,8 @@ namespace COMP003A.LegoInventorySystem
                 Console.Write("Enter your choice: ");
 
                 choice = int.Parse(Console.ReadLine());
-
+                string legoID, legoName;
+                double legoPrice, legoResale;
                 if (choice == 5) break;
 
                 else if (choice == 1)
@@ -44,7 +45,7 @@ namespace COMP003A.LegoInventorySystem
                         try
                         {
                             Console.Write("\nEnter the number of the set: ");
-                            string legoID = Console.ReadLine();
+                            legoID = Console.ReadLine();
                             if (string.IsNullOrWhiteSpace(legoID)) throw new Exception("\nSet's number cannot be blank.");
                             break;
                         }
@@ -59,7 +60,7 @@ namespace COMP003A.LegoInventorySystem
                         try
                         {
                             Console.Write("\nEnter the name of the Set: ");
-                            string legoName = Console.ReadLine();
+                            legoName = Console.ReadLine();
                             if (string.IsNullOrWhiteSpace(legoName)) throw new Exception("\nSet's name cannot be blank.");
                             break;
                         }
@@ -74,7 +75,7 @@ namespace COMP003A.LegoInventorySystem
                         try
                         {
                             Console.Write("\nEnter the price paid: $");
-                            double legoPrice = Convert.ToDouble(Console.ReadLine());
+                            legoPrice = Convert.ToDouble(Console.ReadLine());
                             if (legoPrice <= -1) throw new Exception("\nPrice cannot be less than 0.");
                             break;
                         }
@@ -89,7 +90,7 @@ namespace COMP003A.LegoInventorySystem
                         try
                         {
                             Console.Write("\nEnter the price of resale: $");
-                            double legoResale = Convert.ToDouble(Console.ReadLine());
+                            legoResale = Convert.ToDouble(Console.ReadLine());
                             if (legoResale <= -1) throw new Exception("\nResale price cannot be less than 0.");
                             break;
                         }
@@ -98,7 +99,7 @@ namespace COMP003A.LegoInventorySystem
                             Console.WriteLine($"{ex.Message}\nPlease try agian.");
                         }
                     }
-                    Set set = new Set();
+                    Set set = new Set(legoID, legoName, legoPrice, legoResale);
                     legos.Add(set);
                     Console.WriteLine("Lego Set built successfully!");
                     ((Set)legos.Last()).Awesome();
@@ -112,7 +113,7 @@ namespace COMP003A.LegoInventorySystem
                         try
                         {
                             Console.Write("\nEnter the minifigure ID: ");
-                            string legoID = Console.ReadLine();
+                            legoID = Console.ReadLine();
                             if (string.IsNullOrWhiteSpace(legoID)) throw new Exception("\nMinifigure's ID cannot be blank.");
                             break;
                         }
@@ -127,7 +128,7 @@ namespace COMP003A.LegoInventorySystem
                         try
                         {
                             Console.Write("\nEnter the name of the minifigure: ");
-                            string legoName = Console.ReadLine();
+                            legoName = Console.ReadLine();
                             if (string.IsNullOrWhiteSpace(legoName)) throw new Exception("\nMinifigure's name cannot be blank.");
                             break;
                         }
@@ -142,7 +143,7 @@ namespace COMP003A.LegoInventorySystem
                         try
                         {
                             Console.Write("\nEnter the price paid: $");
-                            double legoPrice = Convert.ToDouble(Console.ReadLine());
+                            legoPrice = Convert.ToDouble(Console.ReadLine());
                             if (legoPrice <= -1) throw new Exception("\nPrice cannot be less than 0.");
                             break;
                         }
@@ -157,7 +158,7 @@ namespace COMP003A.LegoInventorySystem
                         try
                         {
                             Console.Write("\nEnter the price of resale: $");
-                            double legoResale = Convert.ToDouble(Console.ReadLine());
+                            legoResale = Convert.ToDouble(Console.ReadLine());
                             if (legoResale <= -1) throw new Exception("\nResale price cannot be less than 0.");
                             break;
                         }
@@ -166,7 +167,7 @@ namespace COMP003A.LegoInventorySystem
                             Console.WriteLine($"{ex.Message}\nPlease try agian.\n");
                         }
                     }
-                    Minifig minifig = new Minifig();
+                    Minifig minifig = new Minifig(legoID, legoName, legoPrice, legoResale);
                     legos.Add(minifig);
                     Console.WriteLine("Minifigure added successfully!");
                     ((Minifig)legos.Last()).Awesome();
