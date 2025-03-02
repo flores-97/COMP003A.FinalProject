@@ -37,13 +37,14 @@ namespace COMP003A.LegoInventorySystem
 
                 string legoID, legoName;
                 double legoPrice, legoResale;
-                
+
                 if (choice == 5) break;
 
                 else if (choice == 1)
                 {
                     while (true)
                     {
+                        //enter a set
                         try
                         {
                             Console.Write("\nEnter the number of the set: ");
@@ -61,7 +62,7 @@ namespace COMP003A.LegoInventorySystem
                     {
                         try
                         {
-                            Console.Write("\nEnter the name of the Set: ");
+                            Console.Write("Enter the name of the Set: ");
                             legoName = Console.ReadLine();
                             if (string.IsNullOrWhiteSpace(legoName)) throw new Exception("\nSet's name cannot be blank.");
                             break;
@@ -76,7 +77,7 @@ namespace COMP003A.LegoInventorySystem
                     {
                         try
                         {
-                            Console.Write("\nEnter the price paid: $");
+                            Console.Write("Enter the price paid: $");
                             legoPrice = Convert.ToDouble(Console.ReadLine());
                             if (legoPrice <= 0) throw new Exception("\nPrice cannot be less than 0.");
                             break;
@@ -91,7 +92,7 @@ namespace COMP003A.LegoInventorySystem
                     {
                         try
                         {
-                            Console.Write("\nEnter the price of resale: $");
+                            Console.Write("Enter the price of resale: $");
                             legoResale = Convert.ToDouble(Console.ReadLine());
                             if (legoResale <= 0) throw new Exception("\nResale price cannot be less than 0.");
                             break;
@@ -103,7 +104,7 @@ namespace COMP003A.LegoInventorySystem
                     }
                     Set set = new Set(legoID, legoName, legoPrice, legoResale);
                     legos.Add(set);
-                    Console.WriteLine("Lego Set built successfully!");
+                    Console.WriteLine("\nLego Set built successfully!");
                     ((Set)legos.Last()).Awesome();
                     ((Set)legos.Last()).Construction();
                 }
@@ -127,9 +128,10 @@ namespace COMP003A.LegoInventorySystem
 
                     while (true)
                     {
+                        //enter a minifigure
                         try
                         {
-                            Console.Write("\nEnter the name of the minifigure: ");
+                            Console.Write("Enter the name of the minifigure: ");
                             legoName = Console.ReadLine();
                             if (string.IsNullOrWhiteSpace(legoName)) throw new Exception("\nMinifigure's name cannot be blank.");
                             break;
@@ -144,7 +146,7 @@ namespace COMP003A.LegoInventorySystem
                     {
                         try
                         {
-                            Console.Write("\nEnter the price paid: $");
+                            Console.Write("Enter the price paid: $");
                             legoPrice = Convert.ToDouble(Console.ReadLine());
                             if (legoPrice <= 0) throw new Exception("\nPrice cannot be less than 0.");
                             break;
@@ -159,7 +161,7 @@ namespace COMP003A.LegoInventorySystem
                     {
                         try
                         {
-                            Console.Write("\nEnter the price of resale: $");
+                            Console.Write("Enter the price of resale: $");
                             legoResale = Convert.ToDouble(Console.ReadLine());
                             if (legoResale <= 0) throw new Exception("\nResale price cannot be less than 0.");
                             break;
@@ -171,17 +173,19 @@ namespace COMP003A.LegoInventorySystem
                     }
                     Minifig minifig = new Minifig(legoID, legoName, legoPrice, legoResale);
                     legos.Add(minifig);
-                    Console.WriteLine("Minifigure added successfully!");
+                    Console.WriteLine("\nMinifigure added successfully!");
                     ((Minifig)legos.Last()).Awesome();
                     ((Minifig)legos.Last()).Construction();
                 }
 
                 else if (choice == 3)
                 {
-                    Console.Write("Which Lego was sold: ");
+                    //if item sold this will remove 
+                    //assited by StackOverflow
+                    Console.Write("\nWhich Lego was sold: ");
                     string removedLego = Console.ReadLine();
 
-                    int removedCount = legos.RemoveAll(lego => lego.LegoName.Equals(removedLego, StringComparison.OrdinalIgnoreCase));
+                    int removedCount = legos.RemoveAll(lego => lego.LegoName.Equals(removedLego));
                     if (removedCount > 0)
                     {
                         Console.WriteLine($"{removedCount} {removedLego} removed");
@@ -194,19 +198,19 @@ namespace COMP003A.LegoInventorySystem
 
                 else if (choice == 4)
                 {
+
+                    Console.WriteLine("\nRunning Total");
+                    Console.WriteLine($"Total Lego: {legos.Count}");//total lego sets and minifigures
+                    Console.WriteLine($"Total Spent: ${legos.Sum(lego => lego.LegoPrice)}");//adds entire price paid in total 
+                    Console.WriteLine($"Potential Resale: ${legos.Sum(lego => lego.LegoResale)}");//adds entire resale potential in total
+                    Console.WriteLine($"Total Profit: ${legos.Sum(lego => lego.LegoResale) - legos.Sum(lego => lego.LegoPrice)}");//adds entire possible profit
                     foreach (Lego lego in legos)
                     {
-                        Console.WriteLine($"\n-{lego.LegoName}: {lego.LegoPrice}");
+                        Console.WriteLine($"-{lego.LegoName}: ${lego.LegoPrice}");//display lego name and price paid 
                     }
-
-                    Console.WriteLine("Running Total");
-                    Console.WriteLine($"Total Lego: {legos.Count}");
-                    Console.WriteLine($"Total Spent: ${legos.Sum(lego => lego.LegoPrice)}");
-                    Console.WriteLine($"Potential Resale: ${legos.Sum(lego => lego.LegoResale)}");
-                    Console.WriteLine($"Total Profit: ${legos.Sum(lego => lego.LegoResale) - legos.Sum(lego => lego.LegoResale)}");
                 }
 
-                else
+                else 
                 {
                     Console.WriteLine("\nInvalid entry. Select an option on the menu.\n");
                 }

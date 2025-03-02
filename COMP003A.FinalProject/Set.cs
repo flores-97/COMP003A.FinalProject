@@ -20,7 +20,7 @@ namespace COMP003A.FinalProject
         }
         public void Construction()
         {
-            Console.WriteLine("Warning: Set under construction. Come back soon!\n");
+            Console.WriteLine("Warning: Set under construction. Come back soon!");
         }
     }
 }

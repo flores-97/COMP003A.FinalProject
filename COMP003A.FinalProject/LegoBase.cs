@@ -86,9 +86,6 @@ namespace COMP003A.FinalProject
             LegoResale = legoResale;
         }
 
-        public virtual void RemoveLego()
-        {
-        }
-        public abstract void Awesome();
+        public abstract void Awesome();//
     }
 }

@@ -18,7 +18,7 @@ namespace COMP003A.FinalProject
         }
         public void Construction()
         {
-            Console.WriteLine("Note: Lego minifigure collected. Be mindful of budget!\n");
+            Console.WriteLine("Note: Lego minifigure collected. Be mindful of budget!");
         }
     }
 }
